@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-success py-2 px-5 shadow">
+    <img src="https://cdn-icons-png.flaticon.com/512/1588/1588751.png" width="5%" height="%5" class="d-inline-block align-top icono" alt="">
+    <p class="h2 text-light"><a class="invisible">..</a>Campeonato de Football UD</p>
+</nav>
+
+<div class="container py-3 px-5 m-5 ">
+<div class="row">
+  <div class="col-6">
+    <table class="table">
+      <thead>
+        <tr class="table-success">
+          <th scope="col">Nombre del equipo</th>
+          <th scope="col">Puntos</th>
+          <th scope="col">Goles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of equipos">
+          <td>{{item.nombreEquipo}}</td>
+          <td class="px-4">{{item.puntos}}</td>
+          <td class="px-4">{{item.goles}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div align="center" class="px-5 pt-2">
+      
+      <form class="px-5 " [formGroup]="equipoForm" (ngSubmit)="guardarEquipo()">
+        <b>Agregar el equipo</b>
+        <div class="form-group pt-3">
+          
+          <input placeholder="Nombre del equipo" type="text" class="form-control " formControlName="nombreEquipo" >
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="equipoForm.invalid">Guardar Equipo</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center pb-4">
+        <img class="img-responsive center p-3 shadow-lg " src="https://i.pinimg.com/736x/e7/7d/b9/e77db9d70aee8e90f559ee7f8521d5cc--soccer-drills-soccer-coaching.jpg" width="58%">
+      </div>
+    </div>
+   <div class="card shadow py-3">
+    <form class="px-5 form-inline" [formGroup]="marcadorForm" (ngSubmit)="editarEquipo()">
+      <div class="row">
+        <div class="form-group col-6">
+          <label class="text-success">Equipo local</label>
+          <select name="equipo" id="equipo" class="form-select" formControlName="id">
+            <option value="null" selected disabled>Seleccione</option>
+            <option [ngValue]="item.idEquipo" *ngFor="let item of equipos">{{item.nombreEquipo}}</option>
+          </select>
+          <div class="form-group p-2">
+            <label class="text-success">Goles del equipo local</label>
+            <input placeholder="Numeros de goles" type="text" class="form-control " formControlName="goles" >
+          </div>
+        </div>
+        
+          <div class="form-group col-6">
+          <label class="text-danger">Equipo visitante</label>
+          <select name="equipo" id="equipo" class="form-select" formControlName="idP">
+            <option value="null" selected disabled>Seleccione</option>
+            <option [ngValue]="item.idEquipo" *ngFor="let item of equipos">{{item.nombreEquipo}}</option>
+          </select>
+          <div class="form-group pt-2">
+            <label class="text-danger">Goles del equipo visitante</label>
+            <input placeholder="Numeros de goles" type="text" class="form-control " formControlName="golesP" >
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Agregar marcador</button>
+      </div>
+    </form>
+   </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
